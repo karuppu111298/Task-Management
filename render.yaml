@@ -5,7 +5,6 @@ services:
     env: php
     region: oregon  # Change as per your Render region
     plan: free      # or paid plan
-    phpVersion: "8.2"  # Laravel 10 → PHP >= 8.1
     autoDeploy: true
 
     buildCommand: |
