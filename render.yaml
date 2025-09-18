@@ -1,10 +1,9 @@
-# .render.yaml
 services:
   - type: web
     name: laravel-app
-    env: php
-    region: oregon  # Change as per your Render region
-    plan: free      # or paid plan
+    env: php               # ✅ Correct environment
+    region: oregon
+    plan: free
     autoDeploy: true
 
     buildCommand: |
