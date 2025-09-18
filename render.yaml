@@ -1,7 +1,7 @@
 services:
   - type: web
     name: task-management
-    env: php
+    runtime: php
     plan: free
     buildCommand: "composer install --ignore-platform-reqs"
     startCommand: "php artisan serve --host 0.0.0.0 --port $PORT"
