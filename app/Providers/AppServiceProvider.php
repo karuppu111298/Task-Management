@@ -29,8 +29,8 @@ class AppServiceProvider extends ServiceProvider
         if(config('app.env') === 'production') {
                 URL::forceScheme('https');
         }
-         if(app()->runningInConsole() === false){
-            Artisan::call('migrate', ['--force' => true]);
-        }
+        //  if(app()->runningInConsole() === false){
+        //     Artisan::call('migrate', ['--force' => true]);
+        // }
     }
 }

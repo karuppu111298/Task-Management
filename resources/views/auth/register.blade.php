@@ -113,8 +113,7 @@
                     confirm_password: confirm_password
                 },
                 success: function (data) {
-                    alert('Registration successful');
-                    window.location.href = data.redirect_url;
+                    window.location.href = '/task_list';
                 },
                 error: function (xhr) {
                     if (xhr.status === 422) {
