@@ -15,8 +15,8 @@
     <div class="col-md-2 me-2">
         <select id="task_status" class="form-control">
             <option value="">All Status</option>
-            <option value="0">Completed</option>
-            <option value="1">In Completed</option>
+            <option value="1">Completed</option>
+            <option value="0">In Completed</option>
         </select>
     </div>
 

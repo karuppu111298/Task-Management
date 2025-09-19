@@ -20,7 +20,7 @@ class TaskController extends Controller
                 ->orWhere('description', 'LIKE', '%' . $request->term . '%');
         })
         ->when($request->has('status'), function ($query) use ($request) {
-            $query->where('is_deleted', $request->status);
+            $query->where('is_completed', $request->status);
         })
         ->when(!$request->status, function ($query) {
             $query->where('is_deleted', 0);

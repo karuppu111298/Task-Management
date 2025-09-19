@@ -9,7 +9,8 @@ RUN apt-get update && apt-get install -y \
     git \
     zip \
     curl \
-    && docker-php-ext-install pdo_pgsql
+    && docker-php-ext-install pdo_pgsql \
+    && docker-php-ext-enable pdo_pgsql
 
 
 # Composer install
@@ -35,4 +36,4 @@ EXPOSE 8000
 # Start Laravel
 # CMD php artisan serve --host=0.0.0.0 --port=8000
 # Run migrations automatically on container start
-CMD php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=8000
+CMD php artisan serve --host=0.0.0.0 --port=8000
