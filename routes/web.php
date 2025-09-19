@@ -24,5 +24,8 @@ Route::middleware('auth')->group(function(){
 
     Route::post('task_completion', 'TaskController@task_completion')->name('task_completion');
 
+    Route::post('/task_reorder', 'TaskController@reorder')->name('task_reorder');
+
+
     
 });

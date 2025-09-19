@@ -20,7 +20,7 @@ return new class extends Migration
             $table->text('description')->nullable();
             $table->boolean('is_completed')->default(false);
             $table->integer('position')->default(0);
-              $table->integer('is_deleted')->default(0);
+            $table->integer('is_deleted')->default(0);
             $table->timestamps();
         });
     }

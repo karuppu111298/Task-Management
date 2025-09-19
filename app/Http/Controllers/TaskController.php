@@ -25,12 +25,7 @@ class TaskController extends Controller
         ->when(!$request->status, function ($query) {
             $query->where('is_deleted', 0);
         })
-        ->when($request->sort_by !=null && $request->sort_name !=null, function ($query) use ($request) {
-            $query->orderBy($request->sort_name, $request->sort_by); 
-        })
-        ->when(!$request->has('sort_by') || !$request->has('sort_name'), function ($query) {
-            $query->orderBy('id', 'desc');
-        })
+        ->orderBy('position', 'asc')
         ->get();
 
 
@@ -94,4 +89,15 @@ class TaskController extends Controller
             'message' => 'Task completion status updated successfully.'
         ]);
     }
+    public function reorder(Request $request)
+    {
+        $order = $request->order;
+
+        foreach ($order as $index => $id) {
+           DB::table('tasks')->where('id', $id)->update(['position' => $index + 1]);
+        }
+
+        return response()->json(['status' => 'success']);
+    }
+
 }

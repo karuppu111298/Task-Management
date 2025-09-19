@@ -8,12 +8,10 @@
     <h3>Task List</h3>
 
    <div class="d-flex justify-content-end align-items-center mb-3">
-    <!-- Search -->
     <div class="col-md-2 me-2">
         <input type="text" id="search" class="form-control" placeholder="Search">
     </div>
 
-    <!-- Status Filter -->
     <div class="col-md-2 me-2">
         <select id="task_status" class="form-control">
             <option value="">All Status</option>
@@ -22,7 +20,6 @@
         </select>
     </div>
 
-    <!-- Sort by Price -->
     <div class="col-md-2 me-2">
         <select id="sort_price" class="form-control">
             <option value="">Sort by title</option>
@@ -48,7 +45,9 @@
     
 </div>
 
-<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/ui/1.13.0/jquery-ui.min.js"></script>
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
 
 <script>
     $.ajaxSetup({
@@ -117,5 +116,32 @@
         }
 
     }
+    $(function () {
+    $("#sortable").sortable({
+        placeholder: "ui-state-highlight",
+        update: function (event, ui) {
+            var order = [];
+            $('#sortable tr').each(function (index, element) {
+                order.push($(element).data("id"));
+            });
+
+            // Ajax call to save order
+            $.ajax({
+                url: "{{ route('task_reorder') }}",
+                method: "POST",
+                data: {
+                    order: order,
+                    _token: "{{ csrf_token() }}"
+                },
+                success: function (response) {
+                    console.log("Order updated successfully");
+                },
+                error: function (xhr) {
+                    console.log("Error:", xhr.responseText);
+                }
+            });
+        }
+    });
+});
 </script>
 @endsection
