@@ -19,7 +19,8 @@ class TaskController extends Controller
         ->select('tasks.*', 'users.name as user_name')
         ->where(function($query) use ($request){
             $query->where('title', 'LIKE', '%' . $request->term . '%')
-                ->orWhere('description', 'LIKE', '%' . $request->term . '%');
+                ->orWhere('description', 'LIKE', '%' . $request->term . '%')
+                ->orWhere('name', 'LIKE', '%' . $request->term . '%');
         })
         ->when(isset($request->status), function ($query) use ($request) {
             $query->where('is_completed', $request->status);
