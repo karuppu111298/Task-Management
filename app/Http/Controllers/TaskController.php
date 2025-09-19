@@ -19,7 +19,7 @@ class TaskController extends Controller
             $query->where('title', 'LIKE', '%' . $request->term . '%')
                 ->orWhere('description', 'LIKE', '%' . $request->term . '%');
         })
-        ->when($request->has('status'), function ($query) use ($request) {
+        ->when($request->status, function ($query) use ($request) {
             $query->where('is_completed', $request->status);
         })
         ->when(!$request->status, function ($query) {

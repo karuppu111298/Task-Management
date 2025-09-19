@@ -4,14 +4,11 @@ FROM php:8.2-fpm
 # System dependencies
 RUN apt-get update && apt-get install -y \
     libpq-dev \
-    libzip-dev \
-    unzip \
     git \
+    unzip \
     zip \
     curl \
-    && docker-php-ext-install pdo_pgsql \
-    && docker-php-ext-enable pdo_pgsql
-
+    && docker-php-ext-install pdo_pgsql
 
 # Composer install
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
@@ -34,6 +31,4 @@ RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cac
 EXPOSE 8000
 
 # Start Laravel
-# CMD php artisan serve --host=0.0.0.0 --port=8000
-# Run migrations automatically on container start
 CMD php artisan serve --host=0.0.0.0 --port=8000
