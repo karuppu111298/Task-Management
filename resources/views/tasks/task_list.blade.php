@@ -2,7 +2,8 @@
     <thead class="table-dark">
         <tr>
             <th>S No</th>
-            <th>Task Name</th>
+            <th>User Name</th>
+             <th>Task Name</th>
             <th>Description</th>
             <th>Completed</th>
             <th>Action</th>
@@ -12,6 +13,7 @@
         @foreach($task_list as $key => $value)
             <tr data-id="{{ $value->id }}">
                 <td class="text-center"> <span class="drag-handle me-2"> <i class="fas fa-bars"></i> </span> <span>{{ $key + 1 }}</span> </td>
+                <td>{{ $value->user_name }}</td>
                 <td>{{ $value->title }}</td>
                 <td>{{ $value->description }}</td>
                 

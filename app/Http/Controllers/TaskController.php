@@ -15,6 +15,8 @@ class TaskController extends Controller
         
         $task_list = DB::table('tasks')
         // ->where('is_deleted', 0)
+        ->leftJoin('users', 'tasks.user_id', '=', 'users.id')
+        ->select('tasks.*', 'users.name as user_name')
         ->where(function($query) use ($request){
             $query->where('title', 'LIKE', '%' . $request->term . '%')
                 ->orWhere('description', 'LIKE', '%' . $request->term . '%');
