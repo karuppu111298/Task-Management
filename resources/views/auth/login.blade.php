@@ -92,6 +92,10 @@
                             $('#password').addClass('is-invalid');
                             $('#password_error').text(errors.password[0]);
                         }
+                    } else if (xhr.status === 401) { 
+                        $('#username').addClass('is-invalid');
+                        $('#password').addClass('is-invalid');
+                        $('#password_error').text(xhr.responseJSON.message);
                     } else {
                         alert('Something went wrong. Please try again.');
                     }

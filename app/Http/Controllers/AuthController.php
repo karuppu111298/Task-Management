@@ -55,7 +55,7 @@ class AuthController extends Controller
             //return redirect()->intended('dashboard');
            // return redirect()->route('task_list');
         }else{
-            dd('ok');
+            return response()->json([ 'success' => false, 'message' => 'Invalid username or password' ], 401); 
         }
         return back()->withErrors(['email'=>'Invalid credentials']);
     }

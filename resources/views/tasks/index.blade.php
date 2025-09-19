@@ -61,7 +61,6 @@
                 url: "{{ route('task_delete') }}",
                 data: { id: id },
                 success: function (data) {
-                    alert('Task deleted successfully');
                     window.location.href = '/task_list';
                 },
                 error: function () {
@@ -101,7 +100,10 @@
 
     }
     function toggleCompletion(id, is_complete) {
-       if (confirm('Are you sure you want to Complete this task?')) {
+        var message = is_complete 
+        ? 'Are you sure you want to Complete this task?' 
+        : 'Are you sure you want to InComplete this task?';
+       if (confirm(message)) {
          $.ajax({
                 type: 'POST',
                 url: "{{ route('task_completion') }}",
