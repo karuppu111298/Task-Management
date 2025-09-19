@@ -20,13 +20,13 @@
         </select>
     </div>
 
-    <div class="col-md-2 me-2">
+    <!-- <div class="col-md-2 me-2">
         <select id="sort_price" class="form-control">
             <option value="">Sort by title</option>
             <option value="asc">Asc</option>
             <option value="desc">Desc</option>
         </select>
-    </div>
+    </div> -->
 
     <span>
         <button type="button" class="btn btn-warning" onclick="searchTask()">Search</button>
@@ -74,16 +74,16 @@
     function searchTask() {
         var search = $('#search').val();
         var status = $('#task_status').val();
-        var sort_price = $('#sort_price').val();
+        // var sort_price = $('#sort_price').val();
 
-        getData(1, search, status, sort_price);
+        getData(1, search, status);
     }
 
     function resetSearch() {
         window.location.href = '/task_list';
     }
-    function getData(pagination,search,status,sort_price){
-        var url = "{{ route('task_list') }}" + '?term=' + search + '&status=' + status + '&sort_by=' + sort_price +'&sort_name=' + 'price' ;
+    function getData(pagination,search,status){
+        var url = "{{ route('task_list') }}" + '?term=' + search + '&status=' + status ;
 
         window.history.pushState({ path: url }, '', url);
 

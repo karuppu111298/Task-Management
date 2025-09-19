@@ -15,6 +15,7 @@ Route::middleware('auth')->group(function(){
 
     Route::get('dashboard_list','TaskController@dashboard')->name('dashboard_list');
 
+    Route::get('/','TaskController@index')->name('task_list');
     Route::get('task_list','TaskController@index')->name('task_list');
     Route::get('task_add','TaskController@add')->name('task_add');
     Route::post('task_added','TaskController@add')->name('task_added');
