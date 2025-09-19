@@ -18,9 +18,10 @@ class TaskController extends Controller
         ->leftJoin('users', 'tasks.user_id', '=', 'users.id')
         ->select('tasks.*', 'users.name as user_name')
         ->where(function($query) use ($request){
-            $query->where('title', 'LIKE', '%' . $request->term . '%')
-                ->orWhere('description', 'LIKE', '%' . $request->term . '%')
-                ->orWhere('name', 'LIKE', '%' . $request->term . '%');
+            $term = strtolower($request->term);
+            $query->whereRaw('LOWER(title) LIKE ?', ["%{$term}%"])
+            ->orWhereRaw('LOWER(description) LIKE ?', ["%{$term}%"])
+            ->orWhereRaw('LOWER(name) LIKE ?', ["%{$term}%"]);
         })
         ->when(isset($request->status), function ($query) use ($request) {
             $query->where('is_completed', $request->status);
