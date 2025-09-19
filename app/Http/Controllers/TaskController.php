@@ -16,16 +16,16 @@ class TaskController extends Controller
         $task_list = DB::table('tasks')
         // ->where('is_deleted', 0)
         ->where(function($query) use ($request){
-            $query->where('title', 'LIKE', '%' . $request->term . '%')
-                ->orWhere('description', 'LIKE', '%' . $request->term . '%');
+          //  $query->where('title', 'LIKE', '%' . $request->term . '%')
+            //    ->orWhere('description', 'LIKE', '%' . $request->term . '%');
         })
-        ->when($request->status, function ($query) use ($request) {
+        ->when($request->status && $request->has('status'), function ($query) use ($request) {
             $query->where('is_completed', $request->status);
         })
         ->when(!$request->status, function ($query) {
-            $query->where('is_deleted', 0);
+           // $query->where('is_deleted', 0);
         })
-        ->orderBy('position', 'asc')
+       // ->orderBy('position', 'asc')
         ->get();
 
 
