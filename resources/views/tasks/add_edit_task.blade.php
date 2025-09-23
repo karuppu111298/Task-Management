@@ -92,24 +92,24 @@
                 title_name: title_name,
                 description: description
             },
-            success: function (data) {
+            success: function (res) {
+                if (res.status === "success") {
                 window.location.href = '/task_list';
-            },
-            error: function (xhr) {
-                if (xhr.status === 422) {
-                    let errors = xhr.responseJSON.errors;
+                }else if (res.status === "error") {
+                    let errors = res.errors;
+                    console.log(errors);
                     if (errors.title_name) {
                         $('#title_name').addClass('is-invalid');
                         $('#title_name_error').text(errors.title_name[0]);
                     }
-
                     if (errors.description) {
                         $('#description').addClass('is-invalid');
                         $('#description_error').text(errors.description[0]);
                     }
-                } else {
-                    alert('Something went wrong. Please try again.');
                 }
+            },
+            error: function (xhr) {
+                
             }
         });
     });
